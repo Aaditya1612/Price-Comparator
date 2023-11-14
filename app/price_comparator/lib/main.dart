@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_comparator/pages/comparisionpage.dart';
 import 'package:price_comparator/pages/homepage.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: HomePage(),
+      home: ComparisonPage(),
     );
   }
 }

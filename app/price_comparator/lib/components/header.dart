@@ -12,7 +12,14 @@ class Header extends StatelessWidget {
       children: [
         Image.asset('assets/images/logo.png'),
         const SizedBox(width: 10.0),
-        Image.asset('assets/images/title.png', height: 35.0),
+        Text(
+          "Price Comparator",
+          style: TextStyle(
+              color: Colors.blue.shade500,
+              fontFamily: 'Santana',
+              fontSize: 25,
+              fontWeight: FontWeight.w600),
+        ),
       ],
     );
   }
