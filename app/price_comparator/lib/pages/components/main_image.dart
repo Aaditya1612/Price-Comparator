@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MainImage extends StatelessWidget {
   const MainImage({
     Key? key,
-    this.imageHeight = 500.0,
+    this.imageHeight = 400.0,
     this.circleRadius = 180.0,
     this.bottom = 50.0,
     this.imageWidth,
@@ -26,7 +26,7 @@ class MainImage extends StatelessWidget {
         Positioned(
           bottom: bottom,
           child: Image.asset(
-            'assets/images/FloatDoodle.png',
+            'assets/images/FloatDoodle (4).png',
             height: imageHeight,
             width: imageWidth ?? mediaQuery.width * 0.25,
           ),

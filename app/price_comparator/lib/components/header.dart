@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_comparator/pages/homepage.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -12,13 +13,19 @@ class Header extends StatelessWidget {
       children: [
         Image.asset('assets/images/logo.png'),
         const SizedBox(width: 10.0),
-        Text(
-          "Price Comparator",
-          style: TextStyle(
-              color: Colors.blue.shade500,
-              fontFamily: 'Santana',
-              fontSize: 25,
-              fontWeight: FontWeight.w600),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const HomePage()));
+          },
+          child: Text(
+            "Price Comparator",
+            style: TextStyle(
+                color: Colors.blue.shade500,
+                fontFamily: 'Santana',
+                fontSize: 25,
+                fontWeight: FontWeight.w600),
+          ),
         ),
       ],
     );

@@ -1,50 +1,76 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:math';
 
-class ComparisonPage extends StatelessWidget {
-  final Map<String, dynamic> jsonData = {
-    "flipkart": {
-      "title":
-          "boAt Airdopes 131 PRO with 11mm Drivers, 45Hrs Playback, ASAP Charge & Quad Mic ENx Bluetooth Headset",
-      "price": "₹1,199",
-      "ratings": "3.9",
-      "del_cost": "Free delivery",
-      "img":
-          "https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/f/o/t/-original-imagspfgch2pr2zy.jpeg?q=70"
-    },
-    "snapdeal": {
-      "title":
-          "boAt Airdopes 402 White Neckband Wireless With Mic Headphones/Earphones White",
-      "price": "Rs. 5,990",
-      "ratings": "4.0",
-      "del_cost": "Free Delivery",
-      "img":
-          "https://n2.sdlcdn.com/imgs/k/d/0/230X258_sharpened/boAt-Airdopes-402-White-Neckband-SDL379150121-1-ce356.jpg"
-    },
-    // Add more items as needed
-  };
+import 'package:flutter/material.dart';
+import 'package:price_comparator/components/app_drawer.dart';
+import 'package:price_comparator/components/custom_nav_bar.dart';
+import 'package:price_comparator/constant.dart';
+import 'package:http/http.dart' as http;
+
+class ComparisonPage extends StatefulWidget {
+  ComparisonPage({super.key, required this.isLoading, required this.searchKey});
+
+  @override
+  State<ComparisonPage> createState() => _ComparisonPageState();
+  bool isLoading;
+  String searchKey;
+}
+
+class _ComparisonPageState extends State<ComparisonPage> {
+  String url = "http://localhost:8000/v1/fetch/?pname=";
+  late Map<String, dynamic> jsonData;
+
+  fetchResponse(String searchKey) async {
+    final response = await http.get(Uri.parse("$url$searchKey"));
+    if (response.statusCode == 200) {
+      setState(() {
+        jsonData = json.decode(response.body);
+        widget.isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchResponse(widget.searchKey);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-        child: ListView.builder(
-          itemCount: jsonData.length,
-          itemBuilder: (BuildContext context, int index) {
-            String site = jsonData.keys.elementAt(index);
-            Map<String, dynamic> data = jsonData[site];
+      drawer: const AppDrawer(),
+      backgroundColor: kBackgroundColor,
+      body: Column(
+        children: [
+          CustomNavbar(),
+          Expanded(
+            child: widget.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                    child: ListView.builder(
+                      itemCount: jsonData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        String site = jsonData.keys.elementAt(index);
+                        Map<String, dynamic> data = jsonData[site];
 
-            return Column(
-              children: [
-                SizedBox(height: 10),
-                ComparisonCard(
-                  site: site,
-                  data: data,
-                ),
-              ],
-            );
-          },
-        ),
+                        return Column(
+                          children: [
+                            SizedBox(height: 10),
+                            ComparisonCard(
+                              site: site,
+                              data: data,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -61,23 +87,25 @@ class ComparisonCard extends StatelessWidget {
     return Card(
       elevation: 5,
       margin: EdgeInsets.all(10),
+      color: Color.fromRGBO(161, 169, 219, 1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Row(
         children: [
           Container(
-            width: 100,
-            height: 100,
+            width: 200,
+            height: 200,
             padding: EdgeInsets.only(left: 10),
-            margin: EdgeInsets.only(left: 10),
+            margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15.0),
                 bottomLeft: Radius.circular(15.0),
               ),
+              color: Colors.white,
               image: DecorationImage(
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.contain,
                 image: NetworkImage(data["img"]),
               ),
             ),
@@ -87,15 +115,23 @@ class ComparisonCard extends StatelessWidget {
               contentPadding: EdgeInsets.all(20),
               title: Text(
                 site.toUpperCase(),
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 5),
-                  Text(data["title"]),
+                  Text(
+                    data["title"],
+                    style: TextStyle(
+                        fontSize: 15, color: Color.fromARGB(255, 21, 32, 68)),
+                  ),
                   SizedBox(height: 5),
-                  Text('Price: ${data["price"]}'),
+                  Text('Price: ${data["price"]}',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 21, 32, 68))),
                   SizedBox(height: 5),
                   Row(
                     children: [
@@ -104,12 +140,31 @@ class ComparisonCard extends StatelessWidget {
                         color: Colors.yellow,
                       ),
                       SizedBox(width: 5),
-                      Text('Ratings: ${data["ratings"]}'),
+                      Text(
+                        'Ratings: ${data["ratings"]}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromARGB(255, 21, 32, 68)),
+                      ),
                     ],
                   ),
                   SizedBox(height: 5),
-                  Text('Delivery Cost: ${data["del_cost"]}'),
+                  Text(
+                    'Delivery Cost: ${data["del_cost"]}',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(255, 21, 32, 68)),
+                  ),
                 ],
+              ),
+              trailing: ElevatedButton(
+                onPressed: () {},
+                child: Text("Shop Now"),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
               ),
             ),
           ),

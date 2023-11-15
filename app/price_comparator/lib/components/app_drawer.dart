@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_comparator/pages/comparisionpage.dart';
 
 import '../constant.dart';
 
@@ -33,10 +34,20 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200.0,
+      width: 300.0,
       height: 45.0,
       child: TextField(
         textAlignVertical: TextAlignVertical.bottom,
+        textInputAction: TextInputAction.search,
+        onSubmitted: (value) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => ComparisonPage(
+                        isLoading: true,
+                        searchKey: value.toString(),
+                      )),
+              (route) => false);
+        },
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(

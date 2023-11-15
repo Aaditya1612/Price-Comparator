@@ -49,7 +49,7 @@ class Slogan extends StatelessWidget {
       maxLines: 2,
       style: TextStyle(
         color: Color.fromRGBO(157, 170, 242, 1),
-        fontSize: 40.0,
+        fontSize: 50.0,
         fontWeight: FontWeight.w900,
         fontFamily: 'Santana',
       ),

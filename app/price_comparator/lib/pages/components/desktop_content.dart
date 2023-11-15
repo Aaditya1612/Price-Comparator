@@ -13,7 +13,7 @@ class DesktopContent extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
             vertical: 20.0, horizontal: mediaQuery.width * 0.07),
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -25,8 +25,8 @@ class DesktopContent extends StatelessWidget {
                 Expanded(
                   child: MainText(),
                 ),
+                Expanded(flex: 1, child: Container()),
                 Expanded(
-                  flex: 2,
                   child: MainImage(),
                 ),
               ],

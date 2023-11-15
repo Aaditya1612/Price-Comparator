@@ -33,7 +33,7 @@ def getProductDetails(soup):
     return map
 
 def init(search_key):
-    url = "https://www.flipkart.com/search?q="+search_key+"&sort=relevance"
+    url = "https://www.flipkart.com/search?q="+search_key+"&sort=popularity"
     soup = getSoup(url)
     DETAILS_MAP = getProductDetails(soup)
     return DETAILS_MAP

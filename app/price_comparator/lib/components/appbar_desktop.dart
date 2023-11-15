@@ -31,8 +31,8 @@ class DesktopNavbar extends StatelessWidget {
                 const SizedBox(width: 10.0),
                 IconButton(
                   icon: const Icon(
-                    Icons.lock_outline,
-                    color: Colors.black,
+                    Icons.share,
+                    color: Colors.blue,
                     size: 25.0,
                   ),
                   onPressed: () {},
