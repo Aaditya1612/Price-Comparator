@@ -9,4 +9,5 @@ The project involves the development of a Price Comparator tool, allowing users 
 
 ## Demo 📹
 
-[screen-capture.webm](https://github.com/Aaditya1612/Price-Comparator/assets/83654180/fe4c5098-a8ba-41ec-8e0c-95e0111b172a)
+
+[Demo Video.webm](https://github.com/Aaditya1612/Price-Comparator/assets/83654180/d2041a06-7489-407d-8905-cdd269736dc6)
