@@ -19,6 +19,7 @@ def getProductDetails(soup):
             return map
         
         map['title'] = item.find("div", class_ = "_4rR01T").text
+        map['link'] = "https://www.flipkart.com"+item.a['href']
         map['price'] = item.find("div", class_ = "_30jeq3 _1_WHN1").text
         map['ratings'] = item.find("div", class_="_3LWZlK").text
         map['del_cost'] = item.find("div", class_="_3tcB5a p8ucoS").find("div", class_="_2Tpdn3").text
@@ -26,6 +27,7 @@ def getProductDetails(soup):
         return map
     
     map['title'] = item.find("a", class_ = "s1Q9rs")['title']
+    map['link'] = "https://www.flipkart.com"+item.find("a", class_="s1Q9rs")['href']
     map['price'] = item.find("div", class_ = "_30jeq3").text
     map['ratings'] = item.find("div", class_="_3LWZlK").text
     map['del_cost'] = item.find("div", class_="_3tcB5a _2hu4Aw").text
@@ -37,5 +39,4 @@ def init(search_key):
     soup = getSoup(url)
     DETAILS_MAP = getProductDetails(soup)
     return DETAILS_MAP
-
 

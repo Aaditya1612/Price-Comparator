@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:price_comparator/components/app_drawer.dart';
@@ -158,7 +159,9 @@ class ComparisonCard extends StatelessWidget {
                 ],
               ),
               trailing: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  html.window.open(data['link'], "Shop Now");
+                },
                 child: Text("Shop Now"),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

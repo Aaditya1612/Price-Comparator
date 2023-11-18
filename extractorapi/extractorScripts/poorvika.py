@@ -12,6 +12,7 @@ def getSoup(url):
 def getProductDetails(soup):
     map = dict()
     map['title'] = soup.find("div", class_="product-cardlist_card__description__eduH5").a.b.text
+    map['link'] = "https://poorvika.com"+soup.find("div", class_="product-cardlist_card__description__eduH5").a['href']
     map['price'] = soup.find("div", class_="product-cardlist_price__1aKwZ").span.text
     map['img'] = soup.find("div", class_="product-cardlist_card__IeCc4 product-cardlist_card--border__C3__Q no-select").img['src']
     map['del_cost'] = "Not mentioned"
