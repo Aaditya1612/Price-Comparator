@@ -13,7 +13,7 @@ def getProductDetails(soup):
     map = dict()
     map['title'] = soup.find("p", class_ = "product-title").text
     map['link'] = soup.find("div", class_="product-desc-rating").a['href']
-    map['price'] = soup.find("span", class_="lfloat product-desc-price strike").text
+    map['price'] = soup.find("span", class_="lfloat product-price").text
     map['ratings'] = str((float(str(soup.find("div", class_="filled-stars")['style']).removeprefix("width:").removesuffix("%"))/100)*5)
     map['del_cost'] = "Free Delievery"
     map['img'] = soup.find("img", class_="product-image")['src']
