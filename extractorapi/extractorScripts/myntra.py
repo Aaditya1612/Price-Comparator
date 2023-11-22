@@ -32,6 +32,9 @@ def getProductDetails(soup):
     map['img'] = item.find("img", class_="_396cs4")['src']
     return map
 
+
+# Test Phase
+
 url = "https://www.meesho.com/search?q=airdops"
 soup = getSoup(url)
 print(soup.head.title)
