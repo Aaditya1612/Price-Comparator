@@ -70,7 +70,7 @@ The project is organized into two main folders:
 
 ### Accessing the Application
 
-Visit [http://localhost:3000](http://localhost:3000) in your web browser to access the Price Comparator Tool.
+Visit the localhost port number where the web app has fired up in your web browser.
 
 ## Demo 📹
 
