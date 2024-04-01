@@ -41,7 +41,7 @@ The project is organized into two main folders:
     python manage.py runserver
     ```
 
-   This will start the API server.
+   This will start the Django server on localhost.
 
 ### 2. Running the Flutter Web App (app/price_comparator)
 
