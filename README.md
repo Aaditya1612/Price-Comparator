@@ -7,6 +7,10 @@ The project involves the development of a Price Comparator tool, allowing users 
   <img src="https://skillicons.dev/icons?i=flutter,dart,python,django"/>  
 </div>
 
+## Demo 📹
+
+[Demo Video.webm](https://github.com/Aaditya1612/Price-Comparator/assets/83654180/5dadd07f-83bc-4830-9ab4-81609a390248)
+
 ## Project Structure
 
 The project is organized into two main folders:
@@ -72,9 +76,6 @@ The project is organized into two main folders:
 
 Visit the localhost port number where the web app has fired up in your web browser.
 
-## Demo 📹
-
-[Demo Video.webm](https://github.com/Aaditya1612/Price-Comparator/assets/83654180/5dadd07f-83bc-4830-9ab4-81609a390248)
 
 ## Contributing
 
